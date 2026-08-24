@@ -35,6 +35,38 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
 
+      body: GridView.builder(
+          padding: EdgeInsets.all(8),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 0.70,
+              ),
+
+              itemCount: 10,
+              itemBuilder: (context, index){
+
+                return Column(
+                  children: [
+                    SizedBox(
+                      child: Image.network('https://media.istockphoto.com/id/1412240771/photo/headphones-on-white-background.jpg?s=612x612&w=0&k=20&c=DwpnlOcMzclX8zJDKOMSqcXdc1E7gyGYgfX5Xr753aQ=')),
+
+                    Text("Wireless Headphone", style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),),
+
+                    Text("Price: 300", style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.indigoAccent,
+                    ),),
+                    SizedBox(height: 5,)
+                  ],
+                );
+          }),
+
     );
   }
 }
