@@ -9,6 +9,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
+  productDialog(){
+    showDialog(context: context, builder: (context) => AlertDialog(
+      title: Text("Add Product"),
+      content: Column(
+        children: [
+
+        ],
+      ),
+
+    ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 0.70,
+                childAspectRatio: 0.80,
               ),
 
               itemCount: 10,
@@ -66,6 +79,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 );
           }),
+      
+      floatingActionButton: FloatingActionButton(onPressed: productDialog,
+      child: Icon(Icons.add)),
 
     );
   }
