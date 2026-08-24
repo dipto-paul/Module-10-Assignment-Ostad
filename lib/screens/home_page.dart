@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'add_product.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -79,9 +80,21 @@ class _HomePageState extends State<HomePage> {
                   ],
                 );
           }),
-      
-      floatingActionButton: FloatingActionButton(onPressed: productDialog,
-      child: Icon(Icons.add)),
+
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigoAccent,
+        foregroundColor: Colors.white,
+
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddProduct(),
+            ),
+          );
+        },
+        child: Icon(Icons.add,),
+      ),
 
     );
   }
