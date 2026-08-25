@@ -29,5 +29,21 @@ class ProductController {
   }
 
 
+  //eikhan theke delete kora hocche
+  Future<bool> deleteProduct(String productID) async{
+    final url = Uri.parse(Urls.deleteURL(productID));
+
+    final response = await http.get(url);
+
+    print(response.statusCode);
+    print(response.body);
+
+    if(response.statusCode == 200){
+      getProduct();
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 }

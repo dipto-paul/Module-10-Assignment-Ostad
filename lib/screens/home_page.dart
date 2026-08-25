@@ -110,7 +110,20 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      productController.deleteProduct(product.sId.toString()).then((onValue) async{
+                        if(onValue){
+                          await fetchData();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Product Deleted...")),
+                          );
+                        }else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Something is wrong...")),
+                          );
+                        }
+                      });
+                    },
                     icon: Icon(Icons.delete, color: Colors.red),
                     style: IconButton.styleFrom(
                       backgroundColor: Colors.white,
