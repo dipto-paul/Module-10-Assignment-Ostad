@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:module10_assignment_ostad/controller/product_controller.dart';
 import 'add_product.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,6 +13,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  ProductController productController = ProductController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
+  }
+
+  Future fetchData() async{
+    await productController.getProduct();
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,23 +68,24 @@ class _HomePageState extends State<HomePage> {
           childAspectRatio: 0.60,
         ),
 
-        itemCount: 10,
+        itemCount: productController.products.length,
         itemBuilder: (context, index) {
+
+          final product = productController.products[index];// ei variable e sob gula attribute niye niyechi
+
           return Column(
             children: [
               SizedBox(
-                child: Image.network(
-                  'https://media.istockphoto.com/id/1412240771/photo/headphones-on-white-background.jpg?s=612x612&w=0&k=20&c=DwpnlOcMzclX8zJDKOMSqcXdc1E7gyGYgfX5Xr753aQ=',
-                ),
+                child: Image.network(product.img.toString()),
               ),
 
               Text(
-                "Wireless Headphone",
+                "${product.productName}",
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
               ),
 
               Text(
-                "Price: 300",
+                "Price: ${product.totalPrice}",
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
