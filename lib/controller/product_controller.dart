@@ -45,5 +45,37 @@ class ProductController {
       return false;
     }
   }
+  Future<bool> createProduct(Data data) async {
+
+    final response = await http.post(
+      Uri.parse(Urls.createURL),
+
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+
+      body: jsonEncode({
+        "ProductName": data.productName,
+        "Img": data.img,
+        "Qty": data.qty,
+        "TotalPrice": data.totalPrice,
+      }),
+    );
+
+    print("Status Code: ${response.statusCode}");
+    print("Response: ${response.body}");
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+
+      await getProduct();
+
+      return true;
+
+    } else {
+
+      return false;
+    }
+  }
 
 }

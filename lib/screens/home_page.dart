@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:module10_assignment_ostad/controller/product_controller.dart';
@@ -144,12 +143,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xFF5346E0),
         foregroundColor: Colors.white,
 
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+
+          final result = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddProduct()),
+            MaterialPageRoute(
+              builder: (context) => AddProduct(),
+            ),
           );
+
+          if (result == true) {
+            await fetchData();
+          }
         },
+
         child: Icon(Icons.add),
       ),
     );
